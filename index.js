@@ -1,7 +1,7 @@
 /*concepts: 
 1. addEventListener is like waiting for a notification from someone
-2. anonymous functions don't have a name, and can still execute code
-3. higher-order functions: passing in a function into a method [i.e., .addEventListener('click', handleClick)]
+2. Anonymous functions don't have a name, and can still execute code
+3. Higher-order functions: passing in a function into a method [i.e., .addEventListener('click', handleClick)]
 4. var audio = new Audio('url'); audio.play();
 5. 'this' keyword gives us the identity of the object; this is really useful because we can change the style.color of the object by calling this
 
@@ -17,21 +17,22 @@
 //Detecting Button Press
 var numberOfDrumButtons = document.querySelectorAll(".drum").length;
 
+// this is a for loop, but what exactly is it doing?
+// this is looping thru the drum buttons and listening for a click, then access the innerHTML, and make a sound
 for (var i = 0; i < numberOfDrumButtons; i++) {
-
     document.querySelectorAll(".drum")[i].addEventListener("click", function () {
-
         var buttonInnerHTML = this.innerHTML;
-
         makeSound(buttonInnerHTML);
     });
 }
 
 //Detecting Keyboard Press
+//this is listening for keypress, then playing the sound upon keypress
 document.addEventListener("keypress", function (event) {
     makeSound(event.key);
 });
-
+//describing what makeSound function does
+// in this case, makeSound plays different sounds when pressed/clicked
 function makeSound(key) {
     switch (key) {
         case "a":
@@ -63,7 +64,6 @@ function makeSound(key) {
             var snare = new Audio('sounds/snare.mp3');
             snare.play();
             break;
-
 
         default:
             console.log(buttonInnerHTML);

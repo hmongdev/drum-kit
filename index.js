@@ -25,7 +25,6 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
         var buttonInnerHTML = this.innerHTML;
         //returns 'a' or whatever button is CLICKED
         makeSound(buttonInnerHTML);
-
         buttonAnimation(buttonInnerHTML);
     });
 }
@@ -76,6 +75,7 @@ function makeSound(key) {
     }
 }
 
+//pressed animation function
 function buttonAnimation(currentKey) {
     //applies .pressed animation
     var activeButton = document.querySelector('.' + currentKey);

@@ -25,6 +25,8 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
         var buttonInnerHTML = this.innerHTML;
         //returns 'a' or whatever button is CLICKED
         makeSound(buttonInnerHTML);
+
+        buttonAnimation(buttonInnerHTML);
     });
 }
 
@@ -33,6 +35,7 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
 document.addEventListener("keypress", function (event) {
     //returns 'a' or whatever button is PRESSED
     makeSound(event.key);
+    buttonAnimation(event.key);
 });
 
 //Function that recieves both mouse and keyboard INPUTS
@@ -71,4 +74,15 @@ function makeSound(key) {
         default:
             console.log(buttonInnerHTML);
     }
+}
+
+function buttonAnimation(currentKey) {
+    //applies .pressed animation
+    var activeButton = document.querySelector('.' + currentKey);
+    activeButton.classList.add('pressed');
+
+    //removes .pressed animation -- notice that time is placed after remove('class')
+    setTimeout(function () {
+        activeButton.classList.remove('pressed');
+    }, 100);
 }

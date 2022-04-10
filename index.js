@@ -1,27 +1,29 @@
 /*concepts: 
-1. addEventListener is like waiting for a notification from someone
-2. Anonymous functions don't have a name, and can still execute code
-3. Higher-order functions: passing in a function into a method [i.e., .addEventListener('click', handleClick)]
-4. var audio = new Audio('url'); audio.play();
-5. 'this' keyword gives us the identity of the object; this is really useful because we can change the style.color of the object by calling this
+1. addEventListener: 'click' and 'keydown'
+2. anonymous functions:
+3. higher-order functions: passing in a function into a method [i.e., .addEventListener('click', handleClick)]
+4. constructor functions: var audio = new Audio('url'); audio.play();
+5. 'this.property' keyword gives us the identity of the object; this is really useful because we can change the style.color of the object by calling this.style.color
 
 
 /*obstacles:
-1. forgot ); at end of for loop
-2. using '.drum' vs 'button' for querySelectorAll
-3. using querySelectorAll vs querySelector 
-4. forgot [i] after .querySelectorAll() to select index #
-5. forgot ; in for loop
+1. syntax: forgot ); at end of for loop
+2. specificity: using '.drum' vs 'button' for querySelectorAll
+3. logic: creating a variable as input for for-loop
+4. array: using [i] with .querySelectorAll('.drum') to select index #
+5. 
 */
 
 //Detecting Button Press
 var numberOfDrumButtons = document.querySelectorAll(".drum").length;
 
 // this is a for loop, but what exactly is it doing?
-// this is looping thru the drum buttons and listening for a click, then access the innerHTML, and make a sound
 for (var i = 0; i < numberOfDrumButtons; i++) {
+    // this is adding an eventListener to ALL buttons
     document.querySelectorAll(".drum")[i].addEventListener("click", function () {
+        // whenever button is CLICKED, retrieves text of that button with 'this.innerHTML'
         var buttonInnerHTML = this.innerHTML;
+        //returns 'a' or whatever button is CLICKED
         makeSound(buttonInnerHTML);
     });
 }
@@ -29,10 +31,11 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
 //Detecting Keyboard Press
 //this is listening for keypress, then playing the sound upon keypress
 document.addEventListener("keypress", function (event) {
+    //returns 'a' or whatever button is PRESSED
     makeSound(event.key);
 });
-//describing what makeSound function does
-// in this case, makeSound plays different sounds when pressed/clicked
+
+//Function that recieves both mouse and keyboard INPUTS
 function makeSound(key) {
     switch (key) {
         case "a":
